@@ -66,12 +66,12 @@ public class GetItemCommand extends BukkitCommandFeature<CommandSender> {
                     final String id = context.get("id");
                     final Player player = context.sender();
                     try {
-                        ItemStack itemStack = BukkitCustomFishingPlugin.getInstance().getItemManager().buildInternal(Context.player(player).arg(ContextKeys.ID, id), id);
+                        ItemStack itemStack = BukkitCustomFishingPlugin.getInstance().getItemManager().buildInternal(Context.player(player), id);
                         if (itemStack == null) {
                             throw new RuntimeException("Unrecognized item id: " + id);
                         }
                         int amountToGive = amount;
-                        int maxStack = itemStack.getType().getMaxStackSize();
+                        int maxStack = itemStack.getMaxStackSize();
                         while (amountToGive > 0) {
                             int perStackSize = Math.min(maxStack, amountToGive);
                             amountToGive -= perStackSize;
